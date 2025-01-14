@@ -132,35 +132,169 @@
 //     // cout << endl;
 // }
 
-// pass by reference
-/*
- When an array is passed as a parameter, it is actually passed by pointer. This means the function receives a reference to the original array, not a copy of it. As a result, any changes made to the array inside the function directly modify the original array.
- This is referred to as "pass by reference" because no new copy of the array is created. Instead,
- original array is directly accessed and modified within the function.
-*/
-/*
-অ্যারে প্যারামিটার হিসেবে পাস করলে এটি আসলে পয়েন্টারের মাধ্যমে পাস হয়। ফলে মূল অ্যারের সাথে সরাসরি সংযোগ থাকে এবং এর মান পরিবর্তন করা যায়।
-এটি "pass by reference" হিসেবে পরিচিত কারণ অ্যারের কপি তৈরি হয় না, বরং মূল অ্যারেকেই ফাংশনে ব্যবহার করা হয়।
-*/
+// // pass by reference
+// /*
+//  When an array is passed as a parameter, it is actually passed by pointer. This means the function receives a reference to the original array, not a copy of it. As a result, any changes made to the array inside the function directly modify the original array.
+//  This is referred to as "pass by reference" because no new copy of the array is created. Instead,
+//  original array is directly accessed and modified within the function.
+// */
+// /*
+// অ্যারে প্যারামিটার হিসেবে পাস করলে এটি আসলে পয়েন্টারের মাধ্যমে পাস হয়। ফলে মূল অ্যারের সাথে সরাসরি সংযোগ থাকে এবং এর মান পরিবর্তন করা যায়।
+// এটি "pass by reference" হিসেবে পরিচিত কারণ অ্যারের কপি তৈরি হয় না, বরং মূল অ্যারেকেই ফাংশনে ব্যবহার করা হয়।
+// */
 
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// void changeArr(int arr[], int sz)
+// {
+//     cout << "In Function" << endl;
+//     for (int i = 0; i < sz; i++)
+//         arr[i] = 2 * arr[i];
+// }
+
+// int main()
+// {
+//     int arr[] = {1, 2, 3, 4};
+//     changeArr(arr, 4);
+
+//     cout << "In Main" << endl;
+//     for (int i = 0; i < 4; i++)
+//         cout << arr[i] << " ";
+
+//     return 0;
+// }
+
+// // Vectors in C++
+// // Vector syntax
+// vector<int> vec;
+// vector<int> vec = {80, 81, 82};
+// vector<int> vec(3, 0); // first one is for size, second one is for index where i input value
+
+// // #include <bits/stdc++.h>
+// #include <iostream>
+// #include <vector> // for vector
+// using namespace std;
+
+// int main()
+// {
+//     vector<int> vec = {80, 81, 82};
+//     // vector<int> vec(5, 82);
+//     cout << vec[0];
+// }
+
+// // for each loop in vector
+// #include <iostream>
+// #include <vector> // for vector
+// using namespace std;
+
+// int main()
+// {
+//     // vector<int> vec(5, 82);
+
+//     // for (int i : vec)
+//     //     cout << i << endl;
+
+//     vector<char> vec = {'a', 'b', 'c', 'd', 'e'};
+
+//     for (char val : vec)
+//         cout << val << endl;
+// }
+
+/** vector functions
+ * size()
+ * push_back()
+ * pop_back()
+ * front()
+ * back()
+ * at()
+ */
+// #include <iostream>
+// #include <vector>
+// using namespace std;
+
+// int main()
+// {
+//     vector<char> vec = {'a', 'b', 'c', 'd', 'e'};
+
+//     cout << "Size = " << vec.size() << endl;
+//     for (char val : vec)
+//         cout << val << " ";
+// }
+
+// #include <iostream>
+// #include <vector>
+// using namespace std;
+
+// int main()
+// {
+//     vector<int> vec;
+//     cout << "Size before push = " << vec.size() << endl;
+//     vec.push_back(80);
+//     vec.push_back(81);
+//     vec.push_back(82);
+//     vec.push_back(83);
+//     vec.push_back(84);
+//     cout << "Size after push = " << vec.size() << endl;
+
+//     for (int val : vec)
+//         cout << val << " ";
+
+//     cout << endl;
+//     vec.pop_back(); // by default it will delete last element
+//     for (int val : vec)
+//         cout << val << " ";
+
+//     cout << endl;
+//     cout << vec.front() << endl;
+//     cout << vec.back() << endl;
+
+//     cout << vec.at(2) << endl;
+// }
+
+// // static vs dynamic memory allocation
+// #include <iostream>
+// #include <vector>
+// using namespace std;
+
+// int main()
+// {
+//     vector<int> vec;
+//     vec.push_back(1);
+//     vec.push_back(2);
+//     vec.push_back(3);
+//     vec.push_back(3);
+//     vec.push_back(3);
+//     vec.push_back(3);
+
+//     cout << vec.size() << endl;
+//     cout << vec.capacity() << endl;
+// }
+
+// leetcode problem no:136 => single number
+#include <iostream>
+#include <vector>
 using namespace std;
 
-void changeArr(int arr[], int sz)
+int fun(vector<int> &nums)
 {
-    cout << "In Function" << endl;
-    for (int i = 0; i < sz; i++)
-        arr[i] = 2 * arr[i];
-}
+    int ans = 0;
+    for (int val : nums)
+        ans = ans ^ val;
 
+    return ans;
+}
 int main()
 {
-    int arr[] = {1, 2, 3, 4};
-    changeArr(arr, 4);
+    int n;
+    cin >> n;
 
-    cout << "In Main" << endl;
-    for (int i = 0; i < 4; i++)
-        cout << arr[i] << " ";
+    vector<int> nums(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> nums[i];
+    }
 
-    return 0;
+    int res = fun(nums);
+    cout << res << endl;
 }
